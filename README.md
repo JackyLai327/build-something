@@ -3,6 +3,16 @@
 This project is a [Plug & Play](https://plugplay.ch/) style inspired website. This website happened after some brainstorming. The main purpose of this site is to exhibit all projects I've build, and this should not stop at any point but keep growing and expanding. 
 
 
+## Libraries Used
+- [React](https://reactjs.org/)
+- [React Router](https://reactrouter.com/) 
+- [use-sound](https://www.npmjs.com/package/use-sound)
+
+## Referenecs
+- [Plug & Play](https://plugplay.ch/)
+- [Choir Music](https://www.npmjs.com/package/use-sound)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

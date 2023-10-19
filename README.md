@@ -1,3 +1,8 @@
+# Project build something .
+## Description
+This project is a [Plug & Play](https://plugplay.ch/) style inspired website. This website happened after some brainstorming. The main purpose of this site is to exhibit all projects I've build, and this should not stop at any point but keep growing and expanding. 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -28,14 +28,26 @@
     display: block;
     position: absolute;
     width: 110%;
-    transform: translateY(1.5rem);
-    text-align: end;
+    transform: translate(.5rem, 1.5rem);
+    text-align: end; 
+    animation: grow-horizontal 0.3s ease-in-out forwards;
 }
 
 .footer-project-title {
     position: absolute;
     bottom: 10%;
     font-size: 0.9rem;
+    animation: appear 0.3s ease-in-out forwards;
+}
+
+.footer-project-title:hover:after {
+    content: "a project by @JackyLai327";
+    font-size: 0.8rem;
+    color: var(--color-grey);
+    display: block;
+    position: absolute;
+    width: 110%;
+    animation: pop-up 0.3s ease-in-out forwards;
 }
 
 .intro-points {
@@ -49,9 +61,78 @@
 .enter-form {
     position: relative;
     top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
 }
 
 .enter-button {
+    position: absolute;
+    top: 2rem;
+    margin: auto;
+}
+
+.sound-button {
+    left: 5%;
+    bottom: 5%;
+    z-index: 1;
+}
+
+.sound-button-image {
+    width: 100%;
+    height: auto;
     position: relative;
-    top: 1rem;
+}
+
+/* Animations */
+@keyframes grow-horizontal {
+    0% {
+        transform: scaleX(0) translate(.5rem, 1.5rem);
+    }
+    100% {
+        transform: scaleX(1) translate(.5rem, 1.5rem);
+    }
+}
+
+@keyframes pop-up {
+    0% {
+        transform: scale(0) translate(0, 0);
+    }
+    100% {
+        transform: scale(1) translate(5rem, -1.5rem);
+    }
+}
+
+@keyframes disappear {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+    99% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 1;
+    }
+}
+
+/* Media Queries */
+@media screen and (max-height: 500px) {
+    .footer-project-title {
+        animation: disappear 0.3s ease-in-out forwards;
+        display: none;
+    }
+    
 }

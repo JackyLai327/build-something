@@ -7,6 +7,7 @@ This project is a [Plug & Play](https://plugplay.ch/) style inspired website. Th
 - [React](https://reactjs.org/)
 - [React Router](https://reactrouter.com/) 
 - [use-sound](https://www.npmjs.com/package/use-sound)
+- [react-special-cursor](https://github.com/amirho1/react-special-cursor)
 
 ## Referenecs
 - [Plug & Play](https://plugplay.ch/)

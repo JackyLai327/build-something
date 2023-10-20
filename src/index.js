@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './Styles/index.css';
 import reportWebVitals from './reportWebVitals';
 import SiteRouter from './Routers/SiteRouter';
+import CustomCursor from './Components/CustomCusrsor';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <CustomCursor />
     <SiteRouter />
   </React.StrictMode>
 );

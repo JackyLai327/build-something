@@ -1,3 +1,7 @@
+* {
+  cursor: none;
+}
+
 body {
   margin: 0;
   font-family: 'Patrick Hand', cursive;
@@ -18,14 +22,30 @@ code {
   --color-secondary: #EDEDED;
   --color-shadow: rgba(40, 38, 40, 0.25);
   --color-grey: #444444;
+  --color-lifted: #bf9c00;
   font-size: 20px;
+}
+
+
+.custom-cursor {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-accent);
+  border-radius: 0 50% 50% 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  pointer-events: none;
+  border: 2px solid var(--color-black);
 }
 
 a, .link {
   text-decoration: underline;
   color: var(--color-black);
   text-shadow: var(--color-shadow) 0px 4px 4px;
-  cursor: pointer;
+  cursor: none;
   transition: font-size 0.1s ease-in-out;
   background-color: var(--color-secondary);
   border-radius: 15px;
@@ -49,6 +69,14 @@ a:active, .link:active {
 
 .text-accent {
   color: var(--color-accent);
+  animation: put-down .3s ease-in-out forwards;
+}
+
+.text-accent:hover {
+  color: var(--color-lifted);
+  text-shadow: var(--color-shadow) 0px 4px 4px;
+  animation: lifted-up .3s ease-in-out forwards;
+  font-size: 1.05rem;
 }
 
 .no-display {
@@ -66,6 +94,24 @@ a:active, .link:active {
 .fade-out {
   opacity: 0;
   animation: fade-out 1s ease-in-out forwards;
+}
+
+.content > img {
+  width: 20%;
+  height: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sound-button {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+}
+
+.sound-button:hover {
+  transform: scale(1.02);
+  transition: transform 0.1s ease-in-out;
 }
 
 /* Animations */
@@ -89,5 +135,27 @@ a:active, .link:active {
   100% {
     transform: translateY(-3rem);
     opacity: 0;
+  }
+}
+
+@keyframes lifted-up {
+  0% {
+    text-shadow: var(--color-shadow) 0px 0px 0px;
+    font-size: 1rem;
+  }
+  100% {
+    text-shadow: var(--color-shadow) 0px 4px 4px;
+    font-size: 1.05rem;
+  }
+}
+
+@keyframes put-down {
+  0% {
+    text-shadow: var(--color-shadow) 0px 4px 4px;
+    font-size: 1.05rem;
+  }
+  100% {
+    text-shadow: var(--color-shadow) 0px 0px 0px;
+    font-size: 1rem;
   }
 }

@@ -1,0 +1,76 @@
+.portal-icon { 
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    transform: scale(1) translate(0, 0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.portal-icon > video {
+    width: 100%;
+    height: 100%;
+}
+
+.portal-icon:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-bar-opened {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-nav-bar-background);
+}
+
+.close-nav-bar-button {
+    position: absolute;
+    top: 4%;
+    left: 5%;
+    width: 3rem;
+    height: 3rem;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.close-nav-bar-button:hover {
+    animation: tremble 0.1s ease-in-out infinite;
+}
+
+.footer-project-title {
+    animation: appear 0.3s ease-in-out forwards;
+}
+
+.footer-project-title:hover:after {
+    content: "a project by @JackyLai327";
+    font-size: 0.8rem;
+    color: var(--color-grey);
+    display: block;
+    position: absolute;
+    width: 110%;
+    animation: pop-up 0.3s ease-in-out forwards;
+}
+
+/* Animations */
+@keyframes tremble {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(0.1rem);
+    }
+    50% {
+        transform: translate(0, 0);
+    }
+    75% {
+        transform: translate(-0.1rem);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}

@@ -23,6 +23,7 @@ code {
   --color-shadow: rgba(40, 38, 40, 0.25);
   --color-grey: #444444;
   --color-lifted: #bf9c00;
+  --color-nav-bar-background: #4444449a;
   font-size: 20px;
 }
 
@@ -107,11 +108,20 @@ a:active, .link:active {
   width: 2rem;
   height: 2rem;
   position: absolute;
+  left: 5%;
+  bottom: 5%;
+  z-index: 1;
 }
 
 .sound-button:hover {
   transform: scale(1.02);
   transition: transform 0.1s ease-in-out;
+}
+
+.sound-button-image {
+  width: 100%;
+  height: auto;
+  position: relative;
 }
 
 /* Animations */

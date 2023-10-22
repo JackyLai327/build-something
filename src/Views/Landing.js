@@ -74,27 +74,32 @@ const Landing = () => {
      */
     const userEnter = () => {
 
-        document.querySelectorAll('.content').forEach((element) => {
-            element.classList.add('fade-out');
+        // This hides the landing page and the fade-in elements
+        document.querySelectorAll('.landing-page').forEach((element) => {
+            element.classList.add('no-display');
+            element.classList.add('transparent');
+        });
+
+        document.querySelectorAll('.fade-in').forEach((element) => {
+            element.classList.add('no-display');
         });
 
         setShowEnterMessage(true);
+        
+        document.querySelectorAll('.footer-project-title').forEach((element) => {
+            element.classList.add('fade-out');
+        });
+
+        setMute(true);
 
         setTimeout(() => {
             setUserEntered(true);
-        }, 1500);
+        }, 2000);
+
     }
 
     // This useEffect hook is called when the any of the following state variables change: animationStep, userEntered, mute
     useEffect(() => {
-
-        // If the user has entered the portfolio, hide the landing page
-        if (userEntered) {
-            document.querySelectorAll('.landing-page').forEach((element) => {
-                element.classList.add('no-display');
-            });
-        }
-
         // If mute is true, stop the sound. Otherwise, play the sound.
         if (mute) {
             stop();
@@ -110,7 +115,7 @@ const Landing = () => {
             </div>
             <div className='landing-page' onClick={nextAnimationStep}>
                 <div className={animationStep === 0 ? "content" : "fade-out"}><img src={mouesClick} alt='mouse click' /></div>
-                <div className='skip-button link' onClick={() => setUserEntered(true)} onMouseDown={() => stop()}>skip &gt;&gt;</div>
+                <div className='skip-button link' onClick={userEnter}>skip &gt;&gt;</div>
                 <div className={animationStep < 2 ? "content" : "fade-out"}>
                     <div className={animationStep < 1 ? "transparent" : "fade-in"}>Hello, intelligent being.</div>
                     <div className={animationStep < 1 ? "transparent" : "fade-in"}>Welcome to <span className='text-accent'>build something .</span></div>
@@ -129,12 +134,12 @@ const Landing = () => {
                     </div>
                     <div className={animationStep < 4 ? "transparent enter-form" : "fade-in enter-form"}>
                         <div>Whenever you're ready</div>
-                        <div className='link enter-button' onClick={userEnter} onMouseDown={() => stop()}>ENTER</div>
+                        <div className='link enter-button' onClick={userEnter}>ENTER</div>
                     </div>
                 </div>
-                <div className={!showEnterMessage ? "transparent intro-points" : "fade-in intro-points"}>very well...</div>
                 <div className='footer-project-title'>build something .</div>
             </div>
+            <div className={!showEnterMessage ? "no-display" : "fade-in enter-message"}>very well...</div>
         </div>
     )
 }

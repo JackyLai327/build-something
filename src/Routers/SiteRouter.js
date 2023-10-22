@@ -1,8 +1,11 @@
 import React, { useState, createContext } from 'react';
 import Landing from '../Views/Landing';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from '../Views/Dashboard';
 
 // Brings userEntered state into site router
 export const UserEnteredContext = createContext(null);
+// Brings mute state into site router
 export const MuteContext = createContext(null);
 
 export const SiteRouter = () => {
@@ -17,7 +20,11 @@ export const SiteRouter = () => {
     <UserEnteredContext.Provider value={{userEntered, setUserEntered}}>
         <MuteContext.Provider value={{mute, setMute}}>
             {userEntered ? 
-                <div>YAY</div> 
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                    </Routes>
+                </Router>
                 :
                 <Landing />
             }

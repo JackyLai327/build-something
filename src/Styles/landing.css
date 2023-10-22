@@ -21,13 +21,13 @@
     align-items: flex-end;
 }
 
-.skip-button:hover::after {
+.skip-button:hover::after, .skip-button:active::after {
     content: "are you sure?";
     font-size: 0.8rem;
     color: var(--color-grey);
     display: block;
     position: absolute;
-    width: 110%;
+    width: 120%;
     transform: translate(.5rem, 1.5rem);
     text-align: end; 
     animation: grow-horizontal 0.3s ease-in-out forwards;
@@ -73,16 +73,12 @@
     margin: auto;
 }
 
-.sound-button {
-    left: 5%;
-    bottom: 5%;
-    z-index: 1;
-}
-
-.sound-button-image {
+.enter-message {
+    position: absolute;
     width: 100%;
-    height: auto;
-    position: relative;
+    text-align: center;
+    bottom: 40%;
+    margin: auto;
 }
 
 /* Animations */

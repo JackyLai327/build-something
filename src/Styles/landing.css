@@ -12,6 +12,13 @@
     text-align: center;
 }
 
+.content > img {
+    width: 20%;
+    height: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
 .skip-button {
     position: absolute;
     top: 5%;

@@ -11,8 +11,8 @@ const SoundButton = () => {
     } = useContext(MuteContext);
     
     return (
-        <div className='sound-button link' onClick={() => setMute(!mute)}>
-            <img className='sound-button-image' src={mute ? soundOff : soundOn} alt='sound button' />
+        <div className='utility-button sound-button link utility-button-initial-animation' onClick={() => setMute(!mute)}>
+            <img src={mute ? soundOff : soundOn} alt='sound button' />
         </div>
     )
 }

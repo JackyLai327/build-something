@@ -9,14 +9,17 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.portal-icon > video {
+.portal-icon-initial-animation {
+    animation: scale-up 0.3s ease-in-out forwards;
+}
+
+.portal-icon > img {
     width: 100%;
     height: 100%;
 }
 
 .portal-icon:hover {
     transform: scale(1.2);
-    transition: transform 0.3s ease-in-out;
 }
 
 .nav-bar-opened {

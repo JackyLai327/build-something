@@ -33,6 +33,14 @@ const Landing = () => {
     // This state variable keeps track of whether the user has entered the portfolio
     const [showEnterMessage, setShowEnterMessage] = useState(false);
 
+    // Remove initial animation for utility buttons
+    setTimeout(() => {
+        const utilityButtons = document.querySelectorAll('.utility-button-initial-animation');
+        utilityButtons.forEach(button => {
+            button.classList.remove('utility-button-initial-animation');
+        });
+    }, 350);
+
     /** Next Animation Step
      * This function is called when the user clicks on the landing page. 
      * It increments the animationStep state variable by 1.

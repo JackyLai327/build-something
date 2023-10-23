@@ -7,6 +7,8 @@ import Dashboard from '../Views/Dashboard';
 export const UserEnteredContext = createContext(null);
 // Brings mute state into site router
 export const MuteContext = createContext(null);
+// Brings settings state into site router
+export const SettingsContext = createContext(null);
 
 export const SiteRouter = () => {
 
@@ -15,9 +17,19 @@ export const SiteRouter = () => {
 
     // If user mutes the sound, set mute to true
     const [mute, setMute] = useState(false);
+    
+    // If user changes settings, set settings to true
+    const [settings, setSettings] = useState({
+        panelOpen: false,
+        theme: 'light',
+        country: 'Australia',
+        city: 'Melbourne',
+        temperatureUnit: 'Celsius'
+    });
 
     return (
     <UserEnteredContext.Provider value={{userEntered, setUserEntered}}>
+        <SettingsContext.Provider value={{settings, setSettings}}>
         <MuteContext.Provider value={{mute, setMute}}>
             {userEntered ? 
                 <Router>
@@ -29,6 +41,7 @@ export const SiteRouter = () => {
                 <Landing />
             }
         </MuteContext.Provider>
+        </SettingsContext.Provider>
     </UserEnteredContext.Provider>
     )
 }

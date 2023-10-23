@@ -4,8 +4,8 @@ const BASE_URL = "http://api.weatherapi.com/v1";
 const CURRENT_WEATHER = "/current.json";
 const API_KEY = "f26a090c10a745309de113708232210";
 
-/** Fetch Weather Data from Weather API
- * 
+/** Fetch Weather
+ * This function fetches weather data from the Weather API
  * @param {string} city 
  * @returns 
  */

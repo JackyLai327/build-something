@@ -1,0 +1,39 @@
+.utility-button {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    z-index: 1;
+}
+
+.utility-button-initial-animation {
+    animation: slide-in-from-left 0.3s ease-in-out forwards;
+}
+  
+.utility-button:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
+}
+
+.utility-button > img {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.sound-button {
+    left: 5%;
+    bottom: 15%;
+}
+
+.settings-button {
+    left: 5%;
+    bottom: 5%;
+}
+
+/* Responsiveness */
+@media  screen and (max-height: 500px) {
+    .sound-button {
+        animation: fade-out 0.3s ease-in-out forwards;
+        pointer-events: none;
+    }
+}

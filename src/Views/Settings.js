@@ -3,6 +3,7 @@ import '../Styles/settings.css';
 import { SettingsContext } from '../Routers/SiteRouter';
 import { fetchAllCities, fetchCityByName } from '../Data/CityData';
 import { loadingEye } from '../Assets/Gifs';
+import { fetchAllCountries } from '../Data/CountryData';
 
 const Settings = () => {
 
@@ -26,10 +27,13 @@ const Settings = () => {
      * @param {null}
      * @returns {null}
      */
-    const loadCities = async (country) => {
+    const loadCities = async (countryCode) => {
+        console.log(countryCode);
+        setCities([]);
+
         setIsLoading(true);
 
-        const data = await fetchAllCities();
+        const data = await fetchAllCities(countryCode);
 
         data.forEach(cityData => {
             let city = {city: cityData.name, country: cityData.country_code}
@@ -47,26 +51,14 @@ const Settings = () => {
     const loadCountries = async () => {
         setIsLoading(true);
 
-        const data = await fetchAllCities();
+        const data = await fetchAllCountries();
 
-        data.forEach(cityData => {
-            let country = cityData.country_code;
+        data.forEach(countryData => {
+            let country = {country: countryData.name, countryCode: countryData.code}
             setCountries(countries => [...countries, country]);
         });
 
         setIsLoading(false);
-    }
-
-    /** Update Settings
-     * This function is called when the user changes the settings.
-     * @param {*} e : event
-     * @returns {null}
-     */
-    const updateSettings = (e) => {
-        setSettings({
-            ...settings,
-            [e.target.name]: e.target.value
-        });
     }
 
     /** Close Panel
@@ -84,7 +76,6 @@ const Settings = () => {
     // Fetch all cities from the api when the component mounts
     useEffect(() => {
         loadCountries();
-        loadCities();
     }, []);
 
     return (
@@ -101,15 +92,23 @@ const Settings = () => {
                 <div className='settings-fields-container'>
                     <div className='settings-field-group'>
                         <label className='settings-field-label'>Theme</label>
-                        <select className='settings-field-select' name="theme" onChange={updateSettings}>
+                        <select className='settings-field-select' value={settings.theme} name="theme" 
+                            onChange={(e) => {
+                                setSettings({ ...settings, theme: e.target.value });
+                            }}>
+                            {console.log(settings)}
                             <option value='light'>Light</option>
                             <option value='dark'>Dark</option>
                         </select>
                     </div>
 
                     <div className='settings-field-group'>
-                        <label className='settings-field-label' name="temperatureUnit" onChange={updateSettings}>Temperature Unit</label>
-                        <select className='settings-field-select'>
+                        <label className='settings-field-label'>Temperature Unit</label>
+                        <select className='settings-field-select' value={settings.temperatureUnit} name="temperatureUnit" 
+                            onChange={(e) => {
+                                setSettings({ ...settings, temperatureUnit: e.target.value });
+                            
+                            }}>
                             <option value='celsius'>°C</option>
                             <option value='fahrenheit'>°F</option>
                             <option value='kelvin'>K</option>
@@ -117,19 +116,29 @@ const Settings = () => {
                     </div> 
 
                     <div className='settings-field-group'>
-                        <label className='settings-field-label' name="city" onChange={updateSettings}>Your City</label>
-                        <select className='settings-field-select'>
-                            {cities.map(city => {
+                        <label className='settings-field-label'>Your Country</label>
+                        <select className='settings-field-select' value={settings.country} name="countryCode" 
+                            onChange={(e) => {
+                                setSettings({ ...settings, countryCode: e.target.options[e.target.selectedIndex].value });
+                                setSettings({ ...settings, country: e.target.options[e.target.selectedIndex].text });
+                                loadCities(e.target.value);
+                            }}>
+                            <option value={settings.countryCode}>{settings.country}</option>
+                            {countries.map(country => {
                                 return (
-                                <option value={city.city}>{city.city}, {city.country}</option>
+                                    <option value={country.countryCode}>{country.country}</option>
                                 )
                             })}
                         </select>
                     </div> 
 
                     <div className='settings-field-group'>
-                        <label className='settings-field-label' name="city" onChange={updateSettings}>Your City</label>
-                        <select className='settings-field-select'>
+                        <label className='settings-field-label'>Your City</label>
+                        <select className='settings-field-select' value={settings.city} name="city" 
+                            onChange={(e) => {
+                                setSettings({ ...settings, city: e.target.options[e.target.selectedIndex].value });
+                            }}>
+                            <option value={settings.city}>{settings.city}</option>
                             {cities.map(city => {
                                 return (
                                 <option value={city.city}>{city.city}, {city.country}</option>
@@ -140,7 +149,7 @@ const Settings = () => {
 
                     <div className='submit-field-group'>
                         <div className="close-panel-button" onClick={closePanel}>X</div>
-                        <button className='submit-button'>Go Back</button>
+                        <button className='submit-button' onClick={closePanel}>Go Back</button>
                     </div>
                 </div>
                 }

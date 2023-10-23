@@ -8,8 +8,8 @@ const BASE_URL = "https://airlabs.co/api/v9/cities";
  * @param {null}
  * @returns {Promise} cities
  */
-const fetchAllCities = async () => {
-    const url = `${BASE_URL}?api_key=${API_KEY}`;
+const fetchAllCities = async (countryCode) => {
+    const url = `${BASE_URL}?api_key=${API_KEY}&country_code=${countryCode}`;
     const fetchResult = await axios.get(url);
     return fetchResult.data.response;
 }

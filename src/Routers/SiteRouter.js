@@ -22,6 +22,7 @@ export const SiteRouter = () => {
     const [settings, setSettings] = useState({
         panelOpen: false,
         theme: 'light',
+        countryCode: 'AU',
         country: 'Australia',
         city: 'Melbourne',
         temperatureUnit: 'Celsius'

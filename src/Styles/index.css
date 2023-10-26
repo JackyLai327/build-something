@@ -25,6 +25,7 @@ code {
   --color-grey: #444444;
   --color-lifted: #bf9c00;
   --color-nav-bar-background: #4444449a;
+  --color-secondary-opacity: #EDEDED9a;
   font-size: 20px;
 }
 
@@ -194,4 +195,14 @@ button:active {
   100% {
     transform: scale(1.2);
   }
+}
+
+@keyframes grow-font-size {
+  0% {
+    font-size: 0;
+  }
+  100% {
+    font-size: 1rem;
+  }
+  
 }

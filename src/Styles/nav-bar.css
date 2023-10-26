@@ -22,6 +22,10 @@
     transform: scale(1.2);
 }
 
+.portal-icon:active {
+    transform: scale(1);
+}
+
 .nav-bar-opened {
     position: fixed;
     top: 0;

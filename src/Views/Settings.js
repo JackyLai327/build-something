@@ -76,6 +76,7 @@ const Settings = () => {
     // Fetch all cities from the api when the component mounts
     useEffect(() => {
         loadCountries();
+        loadCities(settings.countryCode);
     }, []);
 
     return (
@@ -96,7 +97,6 @@ const Settings = () => {
                             onChange={(e) => {
                                 setSettings({ ...settings, theme: e.target.value });
                             }}>
-                            {console.log(settings)}
                             <option value='light'>Light</option>
                             <option value='dark'>Dark</option>
                         </select>
@@ -111,7 +111,6 @@ const Settings = () => {
                             }}>
                             <option value='celsius'>°C</option>
                             <option value='fahrenheit'>°F</option>
-                            <option value='kelvin'>K</option>
                         </select>
                     </div> 
 

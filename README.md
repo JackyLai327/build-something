@@ -9,6 +9,10 @@ This project is a [Plug & Play](https://plugplay.ch/) style inspired website. Th
 - [use-sound](https://www.npmjs.com/package/use-sound)
 - [react-special-cursor](https://github.com/amirho1/react-special-cursor)
 
+## APIs Called
+- [Google Fonts](https://fonts.google.com/)
+- [WeatherAPI](https://www.weatherapi.com/)
+
 ## Referenecs
 - [Plug & Play](https://plugplay.ch/)
 - [Choir Music](https://www.npmjs.com/package/use-sound)

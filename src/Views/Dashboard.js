@@ -3,6 +3,9 @@ import { fetchWeather } from "../Data/WeatherData";
 import React, { useEffect, useState, useContext } from "react";
 import { SettingsContext } from "../Routers/SiteRouter";
 import WeatherInfoPanel from "../Components/WeatherInfoPanel";
+import useSound from "use-sound";
+import dashboardBGM from '../Assets/Audios/dashboard-bgm.mp3';
+import { MuteContext } from "../Routers/SiteRouter";
 
 export const WeatherContext = React.createContext(null);
 export const WeatherPanelLoadingContext = React.createContext(null);
@@ -14,6 +17,15 @@ const Dashboard = () => {
         settings,
         setSettings
     } = useContext(SettingsContext);
+
+    // Context provides the mute state variable and setMute function to the Settings component
+    const {
+        mute,
+        setMute
+    } = useContext(MuteContext);
+
+    // Sounds
+    const [playDashboardBGM, { stop }] = useSound(dashboardBGM, { volume: 0.2, loop: true });
 
     // Loading state
     const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +70,16 @@ const Dashboard = () => {
     // This useEffect hook calls the getWeather function when the component mounts
     useEffect(() => {
         getWeather();
-    }, [settings]);
+    }, [settings, mute]);
+
+    // This useEffect hook plays the BGM if the user has not muted the site
+    useEffect(() => {
+        if (mute) {
+            stop();
+        } else {
+            playDashboardBGM();
+        }
+    }, [mute]);
 
     return (
     <WeatherContext.Provider value={{weatherData, setWeatherData}}>

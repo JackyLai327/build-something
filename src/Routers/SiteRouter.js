@@ -25,7 +25,7 @@ export const SiteRouter = () => {
         countryCode: 'AU',
         country: 'Australia',
         city: 'Melbourne',
-        temperatureUnit: 'Celsius'
+        temperatureUnit: 'celsius'
     });
 
     return (

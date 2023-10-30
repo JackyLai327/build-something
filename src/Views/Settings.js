@@ -4,6 +4,10 @@ import { SettingsContext } from '../Routers/SiteRouter';
 import { fetchAllCities, fetchCityByName } from '../Data/CityData';
 import { loadingEye } from '../Assets/Gifs';
 import { fetchAllCountries } from '../Data/CountryData';
+import hoverPopSound from '../Assets/Audios/hover-pop.mp3';
+import releasePopSound from '../Assets/Audios/release-pop.mp3';
+import clickSound from '../Assets/Audios/click.mp3';
+import useSound from "use-sound";
 
 const Settings = () => {
 
@@ -12,6 +16,11 @@ const Settings = () => {
         settings,
         setSettings
     } = useContext(SettingsContext);
+
+    // Sounds
+    const [playHoverPopSound] = useSound(hoverPopSound);
+    const [playReleasePopSound] = useSound(releasePopSound);
+    const [playClickSound] = useSound(clickSound);
 
     // List of countries
     const [countries, setCountries] = useState([]);
@@ -28,7 +37,6 @@ const Settings = () => {
      * @returns {null}
      */
     const loadCities = async (countryCode) => {
-        console.log(countryCode);
         setCities([]);
 
         setIsLoading(true);
@@ -76,8 +84,23 @@ const Settings = () => {
     // Fetch all cities from the api when the component mounts
     useEffect(() => {
         loadCountries();
-        loadCities(settings.countryCode);
+        if (settings.countryCode !== '') {
+            loadCities(settings.countryCode);
+        }
     }, []);
+
+    /** Toggle Theme
+     * This function is called when the user changes the theme.
+     * @param {Event} e 
+     */
+    const toggleTheme = e => {
+        setSettings({ ...settings, theme: e.target.value });
+        if (e.target.value === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else if (e.target.value === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    }
 
     return (
     <>
@@ -95,8 +118,8 @@ const Settings = () => {
                         <label className='settings-field-label'>Theme</label>
                         <select className='settings-field-select' value={settings.theme} name="theme" 
                             onChange={(e) => {
-                                setSettings({ ...settings, theme: e.target.value });
-                            }}>
+                                toggleTheme(e);
+                            }} onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}>
                             <option value='light'>Light</option>
                             <option value='dark'>Dark</option>
                         </select>
@@ -108,7 +131,7 @@ const Settings = () => {
                             onChange={(e) => {
                                 setSettings({ ...settings, temperatureUnit: e.target.value });
                             
-                            }}>
+                            }} onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}>
                             <option value='celsius'>°C</option>
                             <option value='fahrenheit'>°F</option>
                         </select>
@@ -116,12 +139,12 @@ const Settings = () => {
 
                     <div className='settings-field-group'>
                         <label className='settings-field-label'>Your Country</label>
-                        <select className='settings-field-select' value={settings.country} name="countryCode" 
+                        <select className='settings-field-select' value={settings.countryCode ? settings.country : ""} name="countryCode" 
                             onChange={(e) => {
                                 setSettings({ ...settings, countryCode: e.target.options[e.target.selectedIndex].value });
                                 setSettings({ ...settings, country: e.target.options[e.target.selectedIndex].text });
                                 loadCities(e.target.value);
-                            }}>
+                            }} onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}>
                             <option value={settings.countryCode}>{settings.country}</option>
                             {countries.map(country => {
                                 return (
@@ -136,7 +159,7 @@ const Settings = () => {
                         <select className='settings-field-select' value={settings.city} name="city" 
                             onChange={(e) => {
                                 setSettings({ ...settings, city: e.target.options[e.target.selectedIndex].value });
-                            }}>
+                            }} onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}>
                             <option value={settings.city}>{settings.city}</option>
                             {cities.map(city => {
                                 return (
@@ -147,8 +170,7 @@ const Settings = () => {
                     </div>  
 
                     <div className='submit-field-group'>
-                        <div className="close-panel-button" onClick={closePanel}>X</div>
-                        <button className='submit-button' onClick={closePanel}>Go Back</button>
+                        <button className='submit-button' onClick={closePanel} onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}>Go Back</button>
                     </div>
                 </div>
                 }

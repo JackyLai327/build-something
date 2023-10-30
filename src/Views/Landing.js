@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, createContext } from 'react';
 import { UserEnteredContext } from '../Routers/SiteRouter';
 import '../Styles/landing.css';
 import useSound from 'use-sound';
@@ -6,11 +6,19 @@ import choirSound from '../Assets/Audios/church-choir.mp3';
 import { mouesClick } from '../Assets/Images';
 import SoundButton from '../Components/SoundButton';
 import { MuteContext } from '../Routers/SiteRouter';
+import hoverPopSound from '../Assets/Audios/hover-pop.mp3';
+import releasePopSound from '../Assets/Audios/release-pop.mp3';
+import slideEffectSound from '../Assets/Audios/slide-effect.mp3';
+import clickSound from '../Assets/Audios/click.mp3';
 
 const Landing = () => {
 
-    // This is to play sound when the user enters the portfolio
-    const [play, { stop, volume }] = useSound(choirSound, { volume: 0.25 });
+    // Sounds
+    const [playChurchSound, { stop }] = useSound(choirSound, { volume: 0.2 });
+    const [playHoverPopSound] = useSound(hoverPopSound);
+    const [playReleasePopSound] = useSound(releasePopSound);
+    const [playSlideEffectSound] = useSound(slideEffectSound, { volume: 0.5 });
+    const [playClickSound] = useSound(clickSound);
 
     // This context provides the userEntered state to the Landing component
     const {
@@ -56,7 +64,7 @@ const Landing = () => {
         }
 
         if (animationStep === 0) {
-            play();
+            playChurchSound();
         }
     }
 
@@ -112,7 +120,7 @@ const Landing = () => {
         if (mute) {
             stop();
         } else {
-            play();
+            playChurchSound();
         }
     }, [userEntered, mute])
 
@@ -123,7 +131,7 @@ const Landing = () => {
             </div>
             <div className='landing-page' onClick={nextAnimationStep}>
                 <div className={animationStep === 0 ? "content" : "fade-out"}><img src={mouesClick} alt='mouse click' /></div>
-                <div className='skip-button link' onClick={userEnter}>skip &gt;&gt;</div>
+                <div className='skip-button link' onClick={userEnter} onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}>skip &gt;&gt;</div>
                 <div className={animationStep < 2 ? "content" : "fade-out"}>
                     <div className={animationStep < 1 ? "transparent" : "fade-in"}>Hello, intelligent being.</div>
                     <div className={animationStep < 1 ? "transparent" : "fade-in"}>Welcome to <span className='text-accent'>build something .</span></div>
@@ -142,10 +150,10 @@ const Landing = () => {
                     </div>
                     <div className={animationStep < 4 ? "transparent enter-form" : "fade-in enter-form"}>
                         <div>Whenever you're ready</div>
-                        <div className='link enter-button' onClick={userEnter}>ENTER</div>
+                        <div className='link enter-button' onClick={userEnter} onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}>ENTER</div>
                     </div>
                 </div>
-                <div className='footer-project-title'>build something .</div>
+                <div className='footer-project-title' onMouseEnter={playSlideEffectSound}>build something .</div>
             </div>
             <div className={!showEnterMessage ? "no-display" : "fade-in enter-message"}>very well...</div>
         </div>

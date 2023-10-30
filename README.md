@@ -16,6 +16,9 @@ This project is a [Plug & Play](https://plugplay.ch/) style inspired website. Th
 ## Referenecs
 - [Plug & Play](https://plugplay.ch/)
 - [Choir Music](https://www.npmjs.com/package/use-sound)
+- [mixkit](https://mixkit.co/free-sound-effects)
+- [pixabay](https://pixabay.com/sound-effects)
+- [LANDR](https://www.landr.com)
 
 
 # Getting Started with Create React App

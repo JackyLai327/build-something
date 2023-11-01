@@ -120,6 +120,7 @@ const Landing = () => {
         // Sets mute to true
         setMute(true);
 
+        // Enters
         setTimeout(() => {
             setUserEntered(true);
         }, 2000);

@@ -96,16 +96,28 @@ const Landing = () => {
             element.classList.add('transparent');
         });
 
+        // This hides the footer project title
         document.querySelectorAll('.fade-in').forEach((element) => {
             element.classList.add('no-display');
         });
 
+        // This shows the enter message
         setShowEnterMessage(true);
         
+        // This hides the footer project title
         document.querySelectorAll('.footer-project-title').forEach((element) => {
             element.classList.add('fade-out');
         });
 
+        // Hides sound button
+        document.querySelectorAll('.sound-button').forEach((element) => {
+            element.classList.add('no-display');
+        });
+
+        // Stops church music
+        stop();
+
+        // Sets mute to true
         setMute(true);
 
         setTimeout(() => {
@@ -129,8 +141,12 @@ const Landing = () => {
             <div className='sound-button'>
                 <SoundButton />
             </div>
+
             <div className='landing-page' onClick={nextAnimationStep}>
-                <div className={animationStep === 0 ? "content" : "fade-out"}><img src={mouesClick} alt='mouse click' /></div>
+                <div className={animationStep === 0 ? "content" : "fade-out"}>
+                    <img src={mouesClick} alt='mouse click' />
+                    <div>Click <span className='text-accent'>anywhere</span> to proceed**</div>
+                </div>
                 <div className='skip-button link' onClick={userEnter} onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}>skip &gt;&gt;</div>
                 <div className={animationStep < 2 ? "content" : "fade-out"}>
                     <div className={animationStep < 1 ? "transparent" : "fade-in"}>Hello, intelligent being.</div>

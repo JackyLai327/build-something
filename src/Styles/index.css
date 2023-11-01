@@ -98,6 +98,8 @@ select {
 a:hover, .link:hover {
   font-size: 1.05em;
   transition: font-size 0.1s ease-in-out;
+  border: 3px solid var(--color-accent);
+  box-shadow: var(--color-shadow) 0px 4px 4px;
 }
 
 a:active, .link:active {

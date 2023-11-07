@@ -29,29 +29,37 @@ const WeatherInfoPanel = () => {
         <div className="weather-panel">
             <div className='weather-group'>
                 <div>|</div>
-                <div>{settings.city}</div>
-                <div>{weatherData.condition}</div>
-                <div>|</div>
-            </div>
-            <div className='weather-group'>
-                <div>Temperature</div>
-                <div>
-                    {settings.temperatureUnit === "celsius" ? weatherData.temperatureC : settings.temperatureUnit === "fahrenheit" ? weatherData.temperatureF : null}
-                    <span>{settings.temperatureUnit === "celsius" ? "°C" : settings.temperatureUnit === "fahrenheit" ? "°F" : null}</span>
+                <div className='label'>{settings.city}</div>
+                <div className='data-container'>
+                    <div className='data'>{weatherData.condition}</div>
                 </div>
                 <div>|</div>
             </div>
             <div className='weather-group'>
-                <div>Feels like</div>
-                <div>
-                    {settings.temperatureUnit === "celsius" ? weatherData.feelsLikeC : settings.temperatureUnit === "fahrenheit" ? weatherData.feelsLikeF : null}
-                    <span>{settings.temperatureUnit === "celsius" ? "°C" : settings.temperatureUnit === "fahrenheit" ? "°F" : null}</span>
+                <div className='label'>Temperature</div>
+                <div className='data-container'>
+                    <div className='data'>
+                        {settings.temperatureUnit === "celsius" ? weatherData.temperatureC : settings.temperatureUnit === "fahrenheit" ? weatherData.temperatureF : null}
+                        <span>{settings.temperatureUnit === "celsius" ? "°C" : settings.temperatureUnit === "fahrenheit" ? "°F" : null}</span>
+                    </div>
                 </div>
                 <div>|</div>
             </div>
             <div className='weather-group'>
-                <div>Last updated</div>
-                <div>{weatherData.lastUpdated}</div>
+                <div className='label'>Feels like</div>
+                <div className='data-container'>
+                    <div className='data'>
+                        {settings.temperatureUnit === "celsius" ? weatherData.feelsLikeC : settings.temperatureUnit === "fahrenheit" ? weatherData.feelsLikeF : null}
+                        <span>{settings.temperatureUnit === "celsius" ? "°C" : settings.temperatureUnit === "fahrenheit" ? "°F" : null}</span>
+                    </div>
+                </div>
+                <div>|</div>
+            </div>
+            <div className='weather-group'>
+                <div className='label'>Last updated</div>
+                <div className='data-container'>
+                    <div className='data'>{weatherData.lastUpdated}</div>
+                </div>
                 <div>|</div>
             </div>
             {isLoading ? 

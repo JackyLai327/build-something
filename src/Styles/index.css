@@ -24,7 +24,7 @@ code {
   --color-shadow: rgba(40, 38, 40, 0.25);
   --color-grey: #444444;
   --color-lifted: #bf9c00;
-  --color-nav-bar-background: #4444449a;
+  --color-nav-bar-background: #fffffe9a;
   --color-secondary-opacity: #EDEDED9a;
   font-size: 20px;
 }
@@ -244,4 +244,13 @@ button:active {
     font-size: 1rem;
   }
   
+}
+
+@keyframes slideshow {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }

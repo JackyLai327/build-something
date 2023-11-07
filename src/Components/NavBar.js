@@ -4,6 +4,9 @@ import { portal, portalInverted } from "../Assets/Gifs";
 import useSound from "use-sound";
 import openPortalSound from '../Assets/Audios/open-portal.mp3';
 import warpSound from '../Assets/Audios/warp.mp3';
+import hoverPopSound from '../Assets/Audios/hover-pop.mp3';
+import clickSound from '../Assets/Audios/click.mp3';
+import releasePopSound from '../Assets/Audios/release-pop.mp3';
 
 const NavBar = () => {
 
@@ -11,8 +14,11 @@ const NavBar = () => {
     const [navBarOpen, setNavBarOpen] = useState(false);
 
     // Sounds
-    const [playOpenPortalSound] = useSound(openPortalSound, { volume: 0.2 });
-    const [playWarpSound, { stop }] = useSound(warpSound);
+    const [playOpenPortalSound] = useSound(openPortalSound, { volume: 0.5 });
+    const [playWarpSound, { stop }] = useSound(warpSound, {volume: 1, loop: true});
+    const [playHoverPopSound] = useSound(hoverPopSound);
+    const [playClickSound] = useSound(clickSound);
+    const [playReleasePopSound] = useSound(releasePopSound);
 
     const [isHovering, setIsHovering] = useState(false);
 
@@ -40,6 +46,15 @@ const NavBar = () => {
         <div className="nav-bar-opened">
             <div className="close-nav-bar-button" onClick={() => {setNavBarOpen(false); setIsHovering(false)}} onMouseDown={playOpenPortalSound} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
                 <img src={portalInverted} alt="portal icon" />
+            </div>
+            <div className="nav-bar-title">Teleportation Destinations</div>
+            <div className="nav-bar-item-container">
+                {/* TODO: Make nav-bar items into graphics not texts */}
+                <div className="nav-bar-item animate-1">Dashboard</div>
+                <div className="nav-bar-item animate-2">Games</div>
+                <div className="nav-bar-item animate-3">Forum</div>
+                <div className="nav-bar-item animate-4">About</div>
+                <div className="nav-bar-item animate-5" onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}><a href="https://jackylai327.github.io/portfolio-2023/" target="_blank">Professional Portfolio</a></div>
             </div>
         </div>
         :

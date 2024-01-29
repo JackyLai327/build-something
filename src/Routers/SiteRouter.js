@@ -2,6 +2,9 @@ import React, { useState, createContext } from 'react';
 import Landing from '../Views/Landing';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from '../Views/Dashboard';
+import Games from '../Views/Games';
+import Forum from '../Views/Forum';
+import About from '../Views/About';
 
 // Brings userEntered state into site router
 export const UserEnteredContext = createContext(null);
@@ -36,6 +39,10 @@ export const SiteRouter = () => {
                 <Router>
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
+                        <Route path="/games" element={<Games />} />
+                        <Route path="/forum" element={<Forum />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="*" element={<Dashboard />} />
                     </Routes>
                 </Router>
                 :

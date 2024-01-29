@@ -85,6 +85,7 @@ const Landing = () => {
     /** User Enter
      * This function is called when the user clicks on the enter button.
      * It sets the userEntered state variable to true and plays the enter sound.
+     * It sets the local storage variable userEntered to true.
      * @param {null}
      * @returns {null}
      */

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import '../Styles/nav-bar.css';
 import { portal, portalInverted } from "../Assets/Gifs";
 import useSound from "use-sound";
@@ -7,8 +7,16 @@ import warpSound from '../Assets/Audios/warp.mp3';
 import hoverPopSound from '../Assets/Audios/hover-pop.mp3';
 import clickSound from '../Assets/Audios/click.mp3';
 import releasePopSound from '../Assets/Audios/release-pop.mp3';
+import { UserEnteredContext } from "../Routers/SiteRouter";
 
 const NavBar = () => {
+
+
+    // Context provides the userEntered state variable and setUserEntered function to the Settings component
+    const {
+        userEntered,
+        setUserEntered
+    } = useContext(UserEnteredContext);
 
     // This state variable keeps track of whether the nav bar is open or closed
     const [navBarOpen, setNavBarOpen] = useState(false);
@@ -49,11 +57,9 @@ const NavBar = () => {
             </div>
             <div className="nav-bar-title">Teleportation Destinations</div>
             <div className="nav-bar-item-container">
-                {/* TODO: Make nav-bar items into graphics not texts */}
-                <div className="nav-bar-item animate-1">Dashboard</div>
-                <div className="nav-bar-item animate-2">Games</div>
-                <div className="nav-bar-item animate-3">Forum</div>
-                <div className="nav-bar-item animate-4">About</div>
+                <div className="nav-bar-item animate-2"><a href="/games">Games</a></div>
+                <div className="nav-bar-item animate-3"><a href="/forum">Forum</a></div>
+                <div className="nav-bar-item animate-4"><a href="/about">About</a></div>
                 <div className="nav-bar-item animate-5" onMouseEnter={playHoverPopSound} onMouseDown={playClickSound} onMouseUp={playReleasePopSound}><a href="https://jackylai327.github.io/portfolio-2023/" target="_blank">Professional Portfolio</a></div>
             </div>
         </div>
